@@ -36,3 +36,19 @@
 		padding: 0;
 		margin: 0;
 	}
+	.compare
+	{
+		width:80px;
+		margin-right: 20px;
+	}
+	.number
+	{
+		width:80px;
+		margin-right: 20px;
+	}
+	.change
+	{
+		color:red;
+		font-size: 12px;
+		margin-left: 5px;
+	}

@@ -58,4 +58,71 @@ $(document).ready(function(){
             
        	})
 
+        //验证码
+        var count=60;
+        var timer;
+        $('#send').click(function(){
+          
+          console.log(count);
+          timer=setInterval(function()
+          {
+            if(count>1){
+              count--;
+            $('#send').val(count+"秒后可重发");
+            }else
+            {
+               clearInterval(timer);
+               $('#send').val("重新发送");
+            }
+            
+          },1000)
+          })
+        //生成验证码
+        // $('#change').click(function(){
+        //   $(".number").val(parseInt(Math.random()*10000));
+        // })
+        function change()
+        {
+          var arrys=new Array(
+            '1','2','3','4','5','6','7','8','9','0',
+            'a','b','c','d','e','f','g','h','i','j', 
+            'k','l','m','n','o','p','q','r','s','t', 
+            'u','v','w','x','y','z', 
+            'A','B','C','D','E','F','G','H','I','J', 
+            'K','L','M','N','O','P','Q','R','S','T', 
+            'U','V','W','X','Y','Z'        
+            );
+
+          var code=$('#change');
+          codes="";
+
+            for(var i=0;i<4;i++){
+            var r=parseInt(Math.random()*arrys.length)
+            codes+=arrys[r];
+            }
+          code.val(codes);
+          }
+
+        change();
+        $('#change').click(change);
+
+         //提交表单
+         $('.btn').click(function(){
+          var codes2=$('#change').val().toUpperCase();
+          if($(".number").val()=='')
+          {
+              alert('验证码不能为空');
+          }
+          else if($(".number").val().toUpperCase()==codes2)
+          {
+              alert('正确');
+          }else
+          {
+             alert('不正确');
+             $('number').val="";
+          }
+
+         })
+           
+
 	})
