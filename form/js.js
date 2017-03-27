@@ -69,10 +69,12 @@ $(document).ready(function(){
             if(count>1){
               count--;
             $('#send').val(count+"秒后可重发");
+            $("#send").attr('disabled',true);
             }else
             {
                clearInterval(timer);
                $('#send').val("重新发送");
+	       $("#send").attr('disabled',false);
             }
             
           },1000)
