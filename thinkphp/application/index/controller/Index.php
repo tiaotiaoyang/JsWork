@@ -1,6 +1,8 @@
 <?php
 namespace app\index\controller;
 
+use Request;
+
 class Index
 {
     public function index()
@@ -12,4 +14,52 @@ class Index
     {
         return view('userList');
     }
+
+
+    public function delUser()
+    {
+        $userList = [
+            1 => [
+                'name' => ['阿大'],
+                'age' => 20
+            ],
+            5 => [
+                'name' => ['阿二'],
+                'age' => 16
+            ]
+        ];
+
+        $uid = input('post.uid');
+        if(empty($uid)){
+            $user['errCode'] = 100000;
+            $user['errMsg'] = '用户不存在';
+        }
+
+
+        foreach($userList as $key =>$list){
+            $array[] = $key;
+        }
+
+        if(!in_array($uid, $array)){
+            $user['errCode'] = 100001;
+            $user['errMsg'] = '用户不存在';
+        }else{
+            $user['errCode'] = 1;
+            $user['errMsg'] = '删除成功';
+        }
+
+
+        echo json_encode($user);
+
+
+
+
+
+
+
+
+
+
+    }
+
 }
