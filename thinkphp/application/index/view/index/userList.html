@@ -50,15 +50,46 @@
 
 		
 
-			var gnl=confirm("确认删除改地址?");
-            if (gnl==true){
-              console.log($(this).parent().parent().attr('v'));
-			  $(this).parent().parent().remove();
-            }else{
-              return false;
-            }
-            
-			
+			// var gnl=confirm("确认删除改地址?");
+   //          if (gnl==true){
+   //            console.log($(this).parent().parent().attr('v'));
+			//   $(this).parent().parent().remove();
+   //          }else{
+   //            return false;
+   //          }
+        var uid=$(this).parent().parent().attr('v');
+		if(confirm("确认删除改地址?")===false)return;
+		var that = this;
+
+	$.ajax({
+		
+
+		url:'http://localhost/group/thinkphp/public/index.php/index/index/delUser',
+		type:'POST',
+		async:true,
+		data:{
+			uid:uid
+		},
+		dataType:'json',
+
+		success: function (data) {
+
+              console.log(data.errCode);
+              
+              if(data.errCode==1||data.errCode==5)
+              {
+              	console.log($(that));
+              	$(that).parent().parent().remove();  //删除所在行
+              	alert(data.errMsg);            //删除成功
+              	
+              }else
+              {
+              	alert(data.errMsg);           //用户不存在
+              	return;
+              }
+            },
+    
+    })
         
 		
 	})
@@ -68,13 +99,13 @@
     <div class="list">
 		<span>姓名</span><span>手机</span><span>年龄</span><span><input type="button" name="" value="操作"></span>
 	</div>
-    <div class="list" v='11'>
+    <div class="list" v='1'>
 		<span>某某某</span>
 		<span>1234567890</span>
 		<span>11</span>
 		<span><input type="button" name="" value="删除"></span>
 	</div>
-	<div class="list" v='12'>
+	<div class="list" v='22'>
 		<span>某某某2</span>
 		<span>1234567890</span>
 		<span>11</span>
