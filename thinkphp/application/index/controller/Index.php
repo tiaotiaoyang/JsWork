@@ -47,19 +47,20 @@ class Index
             $user['errCode'] = 1;
             $user['errMsg'] = '删除成功';
         }
-
-
         echo json_encode($user);
 
+    }
 
 
+    public function imgSubmit()
+    {
+        return view('imgSubmit');
+    }
 
 
-
-
-
-
-
+    public function submit()
+    {
+        var_dump($_FILES);exit;
     }
 
 }
